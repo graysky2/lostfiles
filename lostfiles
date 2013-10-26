@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# lostfiles v3.0
+
+# License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
+
+# Initially scripted by the Arch Linux Community
+# Mircea Bardac (dev AT mircea.bardac.net)
+# http://mircea.bardac.net/
+# Modified by Jan Janssen, graysky, karol, asdffdsa, iceram, and others
+
+# Description:
+# Search for files which are not part of installed Arch Linux packages
+
+# Usage:
+#  lostfiles
+
+if [ $UID != "0" ]; then
+  echo "You must run this script as root." 1>&2
+  exit 1
+fi
+
+comm -13 \
+  <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
+  <(find / -not \( \
+  -wholename '/boot/grub' -prune -o \
+  -wholename '/dev' -prune -o \
+  -wholename '/etc/conf.d' -prune -o \
+  -wholename '/etc/ssh' -prune -o \
+  -wholename '/etc/ssl' -prune -o \
+  -wholename '/etc/systemd/system' -prune -o \
+  -wholename '/home' -prune -o \
+  -wholename '/lost+found' -prune -o \
+  -wholename '/media' -prune -o \
+  -wholename '/mnt' -prune -o \
+  -wholename '/proc' -prune -o \
+  -wholename '/root' -prune -o \
+  -wholename '/run' -prune -o \
+  -wholename '/scratch' -prune -o \
+  -wholename '/sys' -prune -o \
+  -wholename '/tmp' -prune -o \
+  -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
+  -wholename '/usr/local/bin' -prune -o \
+  -wholename '/usr/share/mime/application' -prune -o \
+  -wholename '/usr/share/mime/audio' -prune -o \
+  -wholename '/usr/share/mime/image' -prune -o \
+  -wholename '/usr/share/mime/inode' -prune -o \
+  -wholename '/usr/share/mime/interface' -prune -o \
+  -wholename '/usr/share/mime/message' -prune -o \
+  -wholename '/usr/share/mime/multipart' -prune -o \
+  -wholename '/usr/share/mime/text' -prune -o \
+  -wholename '/usr/share/mime/uri' -prune -o \
+  -wholename '/usr/share/mime/video' -prune -o \
+  -wholename '/usr/share/mime/x-content' -prune -o \
+  -wholename '/var/abs' -prune -o \
+  -wholename '/var/cache' -prune -o \
+  -wholename '/var/lock' -prune -o \
+  -wholename '/var/log' -prune -o \
+  -wholename '/var/lib/pacman' -prune -o \
+  -wholename '/var/run' -prune -o \
+  -wholename '/var/spool' -prune -o \
+  -wholename '/var/tmp' -prune \) | sort -u \
+  ) | sed -e 's|^\t||;' | less
+
+# vim:set ts=2 sw=2 et:
