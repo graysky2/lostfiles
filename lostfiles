@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.01
+# lostfiles v3.02
 
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 
@@ -26,6 +26,7 @@ comm -13 \
   -wholename '/boot/grub' -prune -o \
   -wholename '/dev' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
+  -wholename '/etc/pacman.d/gnupg' -prune -o \
   -wholename '/etc/ssh' -prune -o \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
@@ -41,23 +42,13 @@ comm -13 \
   -wholename '/sys' -prune -o \
   -wholename '/tmp' -prune -o \
   -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
-  -wholename '/usr/lib/mysql' -prune -o \
   -wholename '/usr/local/bin' -prune -o \
-  -wholename '/usr/share/mime/application' -prune -o \
-  -wholename '/usr/share/mime/audio' -prune -o \
-  -wholename '/usr/share/mime/image' -prune -o \
-  -wholename '/usr/share/mime/inode' -prune -o \
-  -wholename '/usr/share/mime/interface' -prune -o \
-  -wholename '/usr/share/mime/message' -prune -o \
-  -wholename '/usr/share/mime/multipart' -prune -o \
-  -wholename '/usr/share/mime/text' -prune -o \
-  -wholename '/usr/share/mime/uri' -prune -o \
-  -wholename '/usr/share/mime/video' -prune -o \
-  -wholename '/usr/share/mime/x-content' -prune -o \
+  -wholename '/usr/share/mime' -prune -o \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
   -wholename '/var/lock' -prune -o \
   -wholename '/var/log' -prune -o \
+  -wholename '/var/lib/mysql' -prune -o \
   -wholename '/var/lib/pacman' -prune -o \
   -wholename '/var/run' -prune -o \
   -wholename '/var/spool' -prune -o \
