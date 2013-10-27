@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.0
+# lostfiles v3.01
 
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 
@@ -37,9 +37,11 @@ comm -13 \
   -wholename '/root' -prune -o \
   -wholename '/run' -prune -o \
   -wholename '/scratch' -prune -o \
+  -wholename '/srv' -prune -o \
   -wholename '/sys' -prune -o \
   -wholename '/tmp' -prune -o \
   -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
+  -wholename '/usr/lib/mysql' -prune -o \
   -wholename '/usr/local/bin' -prune -o \
   -wholename '/usr/share/mime/application' -prune -o \
   -wholename '/usr/share/mime/audio' -prune -o \
