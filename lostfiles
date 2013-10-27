@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.02
+# lostfiles v3.03
 
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 
@@ -47,9 +47,8 @@ comm -13 \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
   -wholename '/var/lock' -prune -o \
+  -wholename '/var/lib' -prune -o \
   -wholename '/var/log' -prune -o \
-  -wholename '/var/lib/mysql' -prune -o \
-  -wholename '/var/lib/pacman' -prune -o \
   -wholename '/var/run' -prune -o \
   -wholename '/var/spool' -prune -o \
   -wholename '/var/tmp' -prune \) | sort -u \
