@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# lostfiles v3.03
-
+# lostfiles v3.04
+#
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
-
+#
 # Initially scripted by the Arch Linux Community
 # Mircea Bardac (dev AT mircea.bardac.net)
 # http://mircea.bardac.net/
 # Modified by Jan Janssen, graysky, karol, asdffdsa, iceram, and others
-
+#
 # Description:
 # Search for files which are not part of installed Arch Linux packages
-
+#
 # Usage:
-#  lostfiles
+# lostfiles
 
 if [ $UID != "0" ]; then
   echo "You must run this script as root." 1>&2
@@ -27,7 +27,22 @@ comm -13 \
   -wholename '/dev' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
   -wholename '/etc/pacman.d/gnupg' -prune -o \
-  -wholename '/etc/ssh' -prune -o \
+  -wholename '/etc/adjtime' -prune -o \
+  -wholename '/etc/fancontrol' -prune -o \
+  -wholename '/etc/gshadow' -prune -o \
+  -wholename '/etc/gshadow-' -prune -o \
+  -wholename '/etc/group' -prune -o \
+  -wholename '/etc/group-' -prune -o \
+  -wholename '/etc/hostname' -prune -o \
+  -wholename '/etc/locale.conf' -prune -o \
+  -wholename '/etc/localtime' -prune -o \
+  -wholename '/etc/ld.so.cache' -prune -o \
+  -wholename '/etc/machine-id' -prune -o \
+  -wholename '/etc/passwd' -prune -o \
+  -wholename '/etc/passwd-' -prune -o \
+  -wholename '/etc/shadow' -prune -o \
+  -wholename '/etc/shadow-' -prune -o \
+  -wholename '/etc/ssh/ssh_host*' -prune -o \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
   -wholename '/home' -prune -o \
