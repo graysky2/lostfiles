@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.04
+# lostfiles v3.05
 #
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 #
@@ -24,6 +24,7 @@ comm -13 \
   <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
   <(find / -not \( \
   -wholename '/boot/grub' -prune -o \
+  -wholename '/boot/initramfs-linux*' -prune -o \
   -wholename '/dev' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
   -wholename '/etc/pacman.d/gnupg' -prune -o \
@@ -42,6 +43,7 @@ comm -13 \
   -wholename '/etc/passwd-' -prune -o \
   -wholename '/etc/shadow' -prune -o \
   -wholename '/etc/shadow-' -prune -o \
+  -wholename '/etc/udev/hwdb.bin' -prune -o \
   -wholename '/etc/ssh/ssh_host*' -prune -o \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
@@ -57,7 +59,10 @@ comm -13 \
   -wholename '/sys' -prune -o \
   -wholename '/tmp' -prune -o \
   -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
+  -wholename '/usr/lib/locale/locale-archive' -prune -o \
   -wholename '/usr/local/bin' -prune -o \
+  -wholename '/usr/share/info/dir' -prune -o \
+  -wholename '/usr/share/backintime' -prune -o \
   -wholename '/usr/share/mime' -prune -o \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
