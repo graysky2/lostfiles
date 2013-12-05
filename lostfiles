@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.05
+# lostfiles v3.06
 #
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 #
@@ -72,6 +72,6 @@ comm -13 \
   -wholename '/var/run' -prune -o \
   -wholename '/var/spool' -prune -o \
   -wholename '/var/tmp' -prune \) | sort -u \
-  ) | sed -e 's|^\t||;' | less
+  ) | sed -e 's|^\t||;'
 
 # vim:set ts=2 sw=2 et:
