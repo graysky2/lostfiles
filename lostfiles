@@ -71,6 +71,8 @@ comm -13 \
   -wholename '/var/log' -prune -o \
   -wholename '/var/run' -prune -o \
   -wholename '/var/spool' -prune -o \
+  -wholename '/etc/NetworkManager/system-connections' -prune -o \
+  -wholename '/var/db/sudo' -prune -o \
   -wholename '/var/tmp' -prune \) | sort -u \
   ) | sed -e 's|^\t||;'
 
