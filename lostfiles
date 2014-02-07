@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.08
+# lostfiles v3.09
 #
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 #
@@ -46,6 +46,7 @@ comm -13 \
   -wholename '/etc/udev/hwdb.bin' -prune -o \
   -wholename '/etc/ssh/ssh_host*' -prune -o \
   -wholename '/etc/ssl' -prune -o \
+  -wholename '/etc/xml/catalog' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
   -wholename '/home' -prune -o \
   -wholename '/lost+found' -prune -o \
