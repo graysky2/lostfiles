@@ -23,12 +23,14 @@ fi
 comm -13 \
   <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
   <(find / -not \( \
+  -wholename '/boot/syslinux' -prune -o \
   -wholename '/boot/grub' -prune -o \
   -wholename '/boot/initramfs-linux*' -prune -o \
   -wholename '/dev' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
   -wholename '/etc/pacman.d/gnupg' -prune -o \
   -wholename '/etc/adjtime' -prune -o \
+  -wholename '/etc/digitalocean' -prune -o \
   -wholename '/etc/fancontrol' -prune -o \
   -wholename '/etc/gshadow' -prune -o \
   -wholename '/etc/gshadow-' -prune -o \
@@ -39,15 +41,18 @@ comm -13 \
   -wholename '/etc/localtime' -prune -o \
   -wholename '/etc/ld.so.cache' -prune -o \
   -wholename '/etc/machine-id' -prune -o \
+  -wholename '/etc/network.d/ethernet-static' -prune -o \
   -wholename '/etc/passwd' -prune -o \
   -wholename '/etc/passwd-' -prune -o \
   -wholename '/etc/shadow' -prune -o \
   -wholename '/etc/shadow-' -prune -o \
   -wholename '/etc/udev/hwdb.bin' -prune -o \
   -wholename '/etc/ssh/ssh_host*' -prune -o \
+  -wholename '/etc/rc.digitalocean' -prune -o \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/xml/catalog' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
+  -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
   -wholename '/home' -prune -o \
   -wholename '/lost+found' -prune -o \
   -wholename '/media' -prune -o \
