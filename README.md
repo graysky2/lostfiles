@@ -9,7 +9,6 @@ Executable | Arch package providing
 bash | bash
 comm | coreutils
 find | findutils
-less | less
 pacman | pacman
 sed | sed
 sort | coreutils
