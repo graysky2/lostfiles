@@ -67,6 +67,7 @@ comm -13 \
   -wholename '/tmp' -prune -o \
   -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
   -wholename '/usr/lib/locale/locale-archive' -prune -o \
+  \( -wholename '/usr/lib/node_modules*' -and -not -wholename '/usr/lib/node_modules/npm*' \) -o \
   -wholename '/usr/local/bin' -prune -o \
   -wholename '/usr/share/info/dir' -prune -o \
   -wholename '/usr/share/backintime' -prune -o \
