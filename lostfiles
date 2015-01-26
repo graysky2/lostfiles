@@ -81,7 +81,6 @@ comm -13 \
   -wholename '/var/spool' -prune -o \
   -wholename '/etc/NetworkManager/system-connections' -prune -o \
   -wholename '/var/db/sudo' -prune -o \
-  \( -wholename '/usr/lib/node_modules*' -and -not -wholename '/usr/lib/node_modules/npm*' \) -o \
   -wholename '/var/tmp' -prune \) | sort -u \
   ) | sed -e 's|^\t||;'
 
