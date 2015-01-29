@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# lostfiles v3.11
+# lostfiles v3.12
 #
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 #
@@ -25,6 +25,7 @@ comm -13 \
   <(find / -not \( \
   -wholename '/boot/syslinux' -prune -o \
   -wholename '/boot/grub' -prune -o \
+  -wholename '/boot/EFI' -prune -o \
   -wholename '/boot/initramfs-linux*' -prune -o \
   -wholename '/dev' -prune -o \
   -wholename '/etc/ca-certificates' -prune -o \
