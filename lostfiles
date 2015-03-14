@@ -25,6 +25,7 @@ comm -13 \
   <(find / -not \( \
   -wholename '/boot/syslinux' -prune -o \
   -wholename '/boot/grub' -prune -o \
+  -wholename '/boot/loader' -prune -o \
   -wholename '/boot/EFI' -prune -o \
   -wholename '/boot/initramfs-linux*' -prune -o \
   -wholename '/dev' -prune -o \
