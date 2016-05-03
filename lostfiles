@@ -39,8 +39,10 @@ comm -13 \
   -wholename '/etc/fancontrol' -prune -o \
   -wholename '/etc/gshadow' -prune -o \
   -wholename '/etc/gshadow-' -prune -o \
+  -wholename '/etc/gshadow.OLD' -prune -o \
   -wholename '/etc/group' -prune -o \
   -wholename '/etc/group-' -prune -o \
+  -wholename '/etc/group.OLD' -prune -o \
   -wholename '/etc/hostname' -prune -o \
   -wholename '/etc/locale.conf' -prune -o \
   -wholename '/etc/localtime' -prune -o \
@@ -49,8 +51,10 @@ comm -13 \
   -wholename '/etc/network.d/ethernet-static' -prune -o \
   -wholename '/etc/passwd' -prune -o \
   -wholename '/etc/passwd-' -prune -o \
+  -wholename '/etc/passwd.OLD' -prune -o \
   -wholename '/etc/shadow' -prune -o \
   -wholename '/etc/shadow-' -prune -o \
+  -wholename '/etc/shadow.OLD' -prune -o \
   -wholename '/etc/udev/hwdb.bin' -prune -o \
   -wholename '/etc/ssh/ssh_host*' -prune -o \
   -wholename '/etc/rc.digitalocean' -prune -o \
