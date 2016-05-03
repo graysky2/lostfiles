@@ -63,6 +63,7 @@ comm -13 \
   -wholename '/etc/xml/catalog' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
   -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
+  -wholename '/etc/vconsole.conf' -prune -o \
   -wholename '/home' -prune -o \
   -wholename '/lost+found' -prune -o \
   -wholename '/media' -prune -o \
