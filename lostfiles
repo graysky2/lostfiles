@@ -29,6 +29,7 @@ comm -13 \
   -wholename '/boot/EFI' -prune -o \
   -wholename '/boot/initramfs-linux*' -prune -o \
   -wholename '/dev' -prune -o \
+  -wholename '/etc/.updated' -prune -o \
   -wholename '/etc/ca-certificates' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
   -wholename '/etc/pacman.d/gnupg' -prune -o \
@@ -74,6 +75,7 @@ comm -13 \
   -wholename '/usr/share/info/dir' -prune -o \
   -wholename '/usr/share/backintime' -prune -o \
   -wholename '/usr/share/mime' -prune -o \
+  -wholename '/var/.updated' -prune -o \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
   -wholename '/var/lock' -prune -o \
