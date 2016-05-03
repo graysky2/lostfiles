@@ -49,6 +49,7 @@ comm -13 \
   -wholename '/etc/ld.so.cache' -prune -o \
   -wholename '/etc/machine-id' -prune -o \
   -wholename '/etc/network.d/ethernet-static' -prune -o \
+  -wholename '/etc/os-release' -prune -o\
   -wholename '/etc/passwd' -prune -o \
   -wholename '/etc/passwd-' -prune -o \
   -wholename '/etc/passwd.OLD' -prune -o \
