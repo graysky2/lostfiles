@@ -62,6 +62,7 @@ comm -13 \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/xml/catalog' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
+  -wholename '/etc/systemd/network' -prune -o \
   -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
   -wholename '/etc/vconsole.conf' -prune -o \
   -wholename '/home' -prune -o \
