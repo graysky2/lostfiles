@@ -81,10 +81,12 @@ comm -13 \
   \( -wholename '/usr/lib/node_modules*' -and -not -wholename '/usr/lib/node_modules/npm*' \) -o \
   -wholename '/usr/local/bin' -prune -o \
   -wholename '/usr/share/info/dir' -prune -o \
+  -wholename '/usr/share/.mono/certs/Trust' -prune -o \
   -wholename '/usr/share/backintime' -prune -o \
   -wholename '/usr/share/fonts/TTF/fonts.dir' -prune -o \
   -wholename '/usr/share/fonts/TTF/fonts.scale' -prune -o \
   -wholename '/usr/share/mime' -prune -o \
+  -wholename '/usr/var/cache' -prune -o \
   -wholename '/var/.updated' -prune -o \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
