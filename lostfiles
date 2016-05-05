@@ -36,6 +36,7 @@ comm -13 \
   -wholename '/etc/.updated' -prune -o \
   -wholename '/etc/ca-certificates' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
+  -wholename '/etc/dfs' -prune -o \
   -wholename '/etc/pacman.d/gnupg' -prune -o \
   -wholename '/etc/adjtime' -prune -o \
   -wholename '/etc/digitalocean' -prune -o \
@@ -68,6 +69,7 @@ comm -13 \
   -wholename '/etc/systemd/network' -prune -o \
   -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
   -wholename '/etc/vconsole.conf' -prune -o \
+  -wholename '/etc/zfs/zpool.cache' -prune -o \
   -wholename '/home' -prune -o \
   -wholename '/lost+found' -prune -o \
   -wholename '/media' -prune -o \
@@ -90,6 +92,7 @@ comm -13 \
   -wholename '/usr/share/fonts/TTF/fonts.dir' -prune -o \
   -wholename '/usr/share/fonts/TTF/fonts.scale' -prune -o \
   -wholename '/usr/share/mime' -prune -o \
+  -wholename '/usr/var' -prune -o \
   -wholename '/usr/var/cache' -prune -o \
   -wholename '/var/.updated' -prune -o \
   -wholename '/var/abs' -prune -o \
