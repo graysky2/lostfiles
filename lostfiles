@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# lostfiles v3.14
-#
 # License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
 #
 # Initially scripted by the Arch Linux Community
@@ -16,6 +14,7 @@
 # lostfiles
 
 # get current kernel version for excluding current dkms module folder in /usr/lib/modules
+
 CURRENTKERNEL="$(uname -r)"
 
 if [ $UID != "0" ]; then
