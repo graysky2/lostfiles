@@ -63,6 +63,10 @@ comm -13 \
   -wholename '/etc/udev/hwdb.bin' -prune -o \
   -wholename '/etc/ssh/ssh_host*' -prune -o \
   -wholename '/etc/rc.digitalocean' -prune -o \
+  -wholename '/etc/samba/private/passdb.tdb' -prune -o \
+  -wholename '/etc/samba/private/secrets.tdb' -prune -o \
+  -wholename '/etc/samba/private/smbpasswd' -prune -o \
+  -wholename '/etc/samba/smb.conf' -prune -o \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/xml/catalog' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
