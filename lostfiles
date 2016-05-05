@@ -98,8 +98,8 @@ comm -13 \
   -wholename '/usr/share/fonts/misc/fonts.dir' -prune -o \
   -wholename '/usr/share/fonts/misc/fonts.scale' -prune -o \
   -wholename '/usr/share/mime' -prune -o \
-  -wholename '/usr/var' -prune -o \
   -wholename '/usr/var/cache' -prune -o \
+  -wholename '/usr/var/run' -prune -o \
   -wholename '/var/.updated' -prune -o \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
