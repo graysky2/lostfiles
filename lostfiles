@@ -34,8 +34,10 @@ comm -13 \
   -wholename '/dev' -prune -o \
   -wholename '/etc/.pwd.lock' -o \
   -wholename '/etc/.updated' -prune -o \
+  -wholename '/etc/blkid.tab' -prune -o \
   -wholename '/etc/ca-certificates' -prune -o \
   -wholename '/etc/conf.d' -prune -o \
+  -wholename '/etc/dfs' -prune -o \
   -wholename '/etc/pacman.d/gnupg' -prune -o \
   -wholename '/etc/adjtime' -prune -o \
   -wholename '/etc/digitalocean' -prune -o \
@@ -62,12 +64,17 @@ comm -13 \
   -wholename '/etc/udev/hwdb.bin' -prune -o \
   -wholename '/etc/ssh/ssh_host*' -prune -o \
   -wholename '/etc/rc.digitalocean' -prune -o \
+  -wholename '/etc/samba/private/passdb.tdb' -prune -o \
+  -wholename '/etc/samba/private/secrets.tdb' -prune -o \
+  -wholename '/etc/samba/private/smbpasswd' -prune -o \
+  -wholename '/etc/samba/smb.conf' -prune -o \
   -wholename '/etc/ssl' -prune -o \
   -wholename '/etc/xml/catalog' -prune -o \
   -wholename '/etc/systemd/system' -prune -o \
   -wholename '/etc/systemd/network' -prune -o \
   -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
   -wholename '/etc/vconsole.conf' -prune -o \
+  -wholename '/etc/zfs/zpool.cache' -prune -o \
   -wholename '/home' -prune -o \
   -wholename '/lost+found' -prune -o \
   -wholename '/media' -prune -o \
@@ -89,8 +96,11 @@ comm -13 \
   -wholename '/usr/share/backintime' -prune -o \
   -wholename '/usr/share/fonts/TTF/fonts.dir' -prune -o \
   -wholename '/usr/share/fonts/TTF/fonts.scale' -prune -o \
+  -wholename '/usr/share/fonts/misc/fonts.dir' -prune -o \
+  -wholename '/usr/share/fonts/misc/fonts.scale' -prune -o \
   -wholename '/usr/share/mime' -prune -o \
   -wholename '/usr/var/cache' -prune -o \
+  -wholename '/usr/var/run' -prune -o \
   -wholename '/var/.updated' -prune -o \
   -wholename '/var/abs' -prune -o \
   -wholename '/var/cache' -prune -o \
