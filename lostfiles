@@ -15,6 +15,9 @@
 # Usage:
 # lostfiles
 
+# get current kernel version for excluding current dkms module folder in /usr/lib/modules
+CURRENTKERNEL="$(uname -r)"
+
 if [ $UID != "0" ]; then
   echo "You must run this script as root." 1>&2
   exit 1
@@ -78,6 +81,7 @@ comm -13 \
   -wholename '/tmp' -prune -o \
   -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
   -wholename '/usr/lib/locale/locale-archive' -prune -o \
+  -wholename '/usr/lib/modules/'$CURRENTKERNEL'' -prune -o \
   \( -wholename '/usr/lib/node_modules*' -and -not -wholename '/usr/lib/node_modules/npm*' \) -o \
   -wholename '/usr/local/bin' -prune -o \
   -wholename '/usr/share/info/dir' -prune -o \
