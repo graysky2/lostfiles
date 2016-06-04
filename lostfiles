@@ -31,7 +31,7 @@ comm -13 \
   -wholename '/boot/EFI' -prune -o \
   -wholename '/boot/initramfs-linux*' -prune -o \
   -wholename '/dev' -prune -o \
-  -wholename '/etc/.pwd.lock' -o \
+  -wholename '/etc/.pwd.lock' -prune -o \
   -wholename '/etc/.updated' -prune -o \
   -wholename '/etc/blkid.tab' -prune -o \
   -wholename '/etc/ca-certificates' -prune -o \
