@@ -1,5 +1,5 @@
 # Lostfiles
-A simple bash script script that shows users "lost" files on their Arch Linux systems.  "Lost" in this context means those files that are not owned by an installed Arch Linux package.
+A simple script that identifies files not owned and not created by any Arch Linux package.
 
 # Dependencies
 This script is only for Linux distros that use pacman for package management.  All dependencies are including he Arch Linux base group but are listed out here for general info:
