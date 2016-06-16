@@ -25,6 +25,7 @@ fi
 comm -13 \
   <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
   <(find / -not \( \
+  -wholename '/.snapshots' -prune -o \
   -wholename '/boot/syslinux' -prune -o \
   -wholename '/boot/grub' -prune -o \
   -wholename '/boot/loader' -prune -o \
