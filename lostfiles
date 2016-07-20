@@ -45,7 +45,7 @@ strict() {
     -wholename '/var/lib' -prune -o \
     -wholename '/var/log' -prune -o \
     -wholename '/var/run' -prune -o \
-    -wholename '/var/spool' -prune -o \
+    -wholename '/var/spool' -prune \) | sort -u \
     ) | sed -e 's|^\t||;'
 }
 
