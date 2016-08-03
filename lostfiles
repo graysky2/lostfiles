@@ -77,6 +77,8 @@ relaxed() {
     -wholename '/etc/gshadow' -prune -o \
     -wholename '/etc/gshadow-' -prune -o \
     -wholename '/etc/gshadow.OLD' -prune -o \
+    -wholename '/etc/easy-rsa' -prune -o \
+    -wholename '/etc/openvpn' -prune -o \
     -wholename '/etc/group' -prune -o \
     -wholename '/etc/group-' -prune -o \
     -wholename '/etc/group.OLD' -prune -o \
