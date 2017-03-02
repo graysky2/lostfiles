@@ -113,7 +113,10 @@ relaxed() {
     -wholename '/etc/zfs/zpool.cache' -prune -o \
     -wholename '/home' -prune -o \
     -wholename '/lost+found' -prune -o \
-    -wholename '/opt/google-appengine-go/appengine/api/*.pyc' -prune -o \
+    -wholename '/opt/google-appengine-go/*.pyc' -prune -o \
+    -wholename '/opt/google-appengine-go/*/*.pyc' -prune -o \
+    -wholename '/opt/google-appengine-go/*/*/*.pyc' -prune -o \
+    -wholename '/opt/google-appengine-go/*/*/*/*/*.pyc' -prune -o \
     -wholename '/media' -prune -o \
     -wholename '/mnt' -prune -o \
     -wholename '/proc' -prune -o \
