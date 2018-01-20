@@ -96,6 +96,7 @@ relaxed() {
     -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
     -wholename '/etc/vconsole.conf' -prune -o \
     -wholename '/etc/zfs/zpool.cache' -prune -o \
+    -wholename '/opt/google-appengine-go/appengine/api/*.pyc' -prune -o \
     -wholename '/usr/bin/__pycache__' -prune -o \
     -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
     -wholename '/usr/lib/locale/locale-archive' -prune -o \
