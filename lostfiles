@@ -27,19 +27,7 @@ fi
 strict() {
   comm -13 \
     <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
-    <(find / -not \( \
-    -wholename '/dev' -prune -o \
-    -wholename '/home' -prune -o \
-    -wholename '/lost+found' -prune -o \
-    -wholename '/media' -prune -o \
-    -wholename '/mnt' -prune -o \
-    -wholename '/proc' -prune -o \
-    -wholename '/root' -prune -o \
-    -wholename '/run' -prune -o \
-    -wholename '/scratch' -prune -o \
-    -wholename '/srv' -prune -o \
-    -wholename '/sys' -prune -o \
-    -wholename '/tmp' -prune -o \
+    <(find "$1" -not \( \
     -wholename '/var/.updated' -prune -o \
     -wholename '/var/lock' -prune -o \
     -wholename '/var/lib' -prune -o \
@@ -54,15 +42,12 @@ strict() {
 relaxed() {
   comm -13 \
     <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
-    <(find / -not \( \
-    -wholename '/swapfile' -prune -o \
-    -wholename '/.snapshots' -prune -o \
+    <(find "$1" -not \( \
     -wholename '/boot/syslinux' -prune -o \
     -wholename '/boot/grub' -prune -o \
     -wholename '/boot/loader' -prune -o \
     -wholename '/boot/EFI' -prune -o \
     -wholename '/boot/initramfs-linux*' -prune -o \
-    -wholename '/dev' -prune -o \
     -wholename '/etc/.pwd.lock' -prune -o \
     -wholename '/etc/.updated' -prune -o \
     -wholename '/etc/blkid.tab' -prune -o \
@@ -111,18 +96,7 @@ relaxed() {
     -wholename '/etc/udev/rules.d/70-digitalocean-net.rules' -prune -o \
     -wholename '/etc/vconsole.conf' -prune -o \
     -wholename '/etc/zfs/zpool.cache' -prune -o \
-    -wholename '/home' -prune -o \
-    -wholename '/lost+found' -prune -o \
     -wholename '/opt/google-appengine-go/appengine/api/*.pyc' -prune -o \
-    -wholename '/media' -prune -o \
-    -wholename '/mnt' -prune -o \
-    -wholename '/proc' -prune -o \
-    -wholename '/root' -prune -o \
-    -wholename '/run' -prune -o \
-    -wholename '/scratch' -prune -o \
-    -wholename '/srv' -prune -o \
-    -wholename '/sys' -prune -o \
-    -wholename '/tmp' -prune -o \
     -wholename '/usr/bin/__pycache__' -prune -o \
     -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
     -wholename '/usr/lib/locale/locale-archive' -prune -o \
@@ -156,12 +130,35 @@ relaxed() {
     ) | sed -e 's|^\t||;'
 }
 
+# run the search with the given level of pickiness, but only on places
+# found in Linux's Filesystem Hierarchy Standard (FHS)
+
+search() {
+    local fhs_places=(/boot /bin /etc /lib* /opt /sbin /usr /var)
+    local place
+    for place in "${fhs_places[@]}"; do
+        "$1" "$place"
+    done
+    # manually check for extra things under /
+    local fhs_place
+    echo -e "\e[0;1mThe following places can't possibly belong to packages.\e[0m"
+    echo -e "\e[0;1mPlease check their contents manually.\e[0m"
+    for place in /*; do
+        for fhs_place in "${fhs_places[@]}"; do
+            if [ "$place" = "$fhs_place" ]; then
+                continue 2
+            fi
+        done
+        echo "$place"
+    done
+}
+
 case "$1" in
   s|S|strict|Strict)
-    strict
+    search strict
     ;;
   r|R|relaxed|Relaxed)
-    relaxed
+    search relaxed
     ;;
   *)
     echo "Usage $0 {strict|relaxed}"
