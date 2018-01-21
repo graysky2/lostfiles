@@ -61,7 +61,8 @@ relaxed() {
     -wholename '/boot/grub' -prune -o \
     -wholename '/boot/loader' -prune -o \
     -wholename '/boot/EFI' -prune -o \
-    -wholename '/boot/initramfs-linux*' -prune -o \
+    -wholename '/boot/initramfs*' -prune -o \
+    -wholename '/boot/lost+found' -prune -o \
     -wholename '/dev' -prune -o \
     -wholename '/etc/.etckeeper' -prune -o \
     -wholename '/etc/.git' -prune -o \
