@@ -46,7 +46,7 @@ strict() {
     -wholename '/var/log' -prune -o \
     -wholename '/var/run' -prune -o \
     -wholename '/var/spool' -prune \) | sort -u \
-    ) | sed -e 's|^\t||;'
+    ) | sed -e 's|^\t||;' | sed -e '1d' | xargs -n1 du -s | sort -rn -k1
 }
 
 # relaxed mode is more forgiving about hits
@@ -159,7 +159,7 @@ relaxed() {
     -wholename '/var/spool' -prune -o \
     -wholename '/var/db/sudo' -prune -o \
     -wholename '/var/tmp' -prune \) | sort -u \
-    ) | sed -e 's|^\t||;'
+    ) | sed -e 's|^\t||;' | sed -e '1d' | xargs -n1 du -s | sort -rn -k1
 }
 
 case "$1" in
