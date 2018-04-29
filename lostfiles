@@ -1,28 +1,49 @@
 #!/bin/bash
-
-# License: GPL v2.0 http://www.gnu.org/licenses/gpl.html
-#
-# Initially scripted by the Arch Linux Community
-# Mircea Bardac (dev AT mircea.bardac.net)
-# http://mircea.bardac.net/
-# Modified by Jan Janssen, graysky, karol, asdffdsa, iceram, and others
-#
-# Description:
-# Search for files which are not part of installed Arch Linux packages
-#
-# Usage:
-# lostfiles {relaxed|strict}
-
-# get current kernel version for excluding current dkms module folder in /usr/lib/modules
-
-CURRENTKERNEL="$(uname -r)"
+set -eo pipefail
 
 if [ $UID != "0" ]; then
   echo "You must run this script as root." 1>&2
   exit 1
 fi
 
-# strict mode aims to be more verbose ignoring less
+usage() {
+  echo " Usage: $0 [-s] [-z] [-h]"
+  echo "      Calling without an option runs in relaxed mode without sorting"
+  echo "  -h  display this help"
+  echo "  -s  optionally define strict mode"
+  echo "  -z  optionally sort results by size"
+  exit 0
+}
+
+# setup defaults which user can override with switches
+use_filter=filter
+# 0 = relaxed (default)
+# 1 = strict
+MODE=0
+
+while getopts 'sz' OPTION; do
+  case "$OPTION" in
+    z)
+      use_filter=filter_sort
+      ;;
+    s)
+      MODE=1
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+filter() {
+  # just filter
+  sed -e 's|^\t||;'
+}
+
+filter_sort() {
+  sed -e '1d' | tr '\n' '\0' | xargs -0 -n1 du -s | sort -rn -k1
+}
 
 strict() {
   comm -13 \
@@ -46,12 +67,15 @@ strict() {
     -wholename '/var/log' -prune -o \
     -wholename '/var/run' -prune -o \
     -wholename '/var/spool' -prune \) | sort -u \
-    ) | sed -e 's|^\t||;'
+    ) | $use_filter
 }
 
 # relaxed mode is more forgiving about hits
 
 relaxed() {
+  # get current kernel version for excluding current dkms module folder in /usr/lib/modules
+  CURRENTKERNEL="$(uname -r)"
+
   comm -13 \
     <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
     <(find / -not \( \
@@ -115,10 +139,11 @@ relaxed() {
     -wholename '/etc/vconsole.conf' -prune -o \
     -wholename '/etc/zfs/zpool.cache' -prune -o \
     -wholename '/home' -prune -o \
+    -wholename '/incoming' -prune -o \
     -wholename '/lost+found' -prune -o \
-    -wholename '/opt/google-appengine-go/appengine/api/*.pyc' -prune -o \
     -wholename '/media' -prune -o \
     -wholename '/mnt' -prune -o \
+    -wholename '/opt/google-appengine-go/appengine/api/*.pyc' -prune -o \
     -wholename '/proc' -prune -o \
     -wholename '/root' -prune -o \
     -wholename '/run' -prune -o \
@@ -127,13 +152,10 @@ relaxed() {
     -wholename '/sys' -prune -o \
     -wholename '/tmp' -prune -o \
     -wholename '/usr/bin/__pycache__' -prune -o \
-    -wholename '/usr/lib/ghc-*' -prune -o \
+    -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
     -wholename '/usr/lib/locale/locale-archive' -prune -o \
     -wholename '/usr/lib/modules/'$CURRENTKERNEL'' -prune -o \
     \( -wholename '/usr/lib/node_modules*' -and -not -wholename '/usr/lib/node_modules/npm/*' \) -o \
-    -wholename '/usr/lib/python*/site-packages' -prune -o \
-    -wholename '/usr/lib/ruby/gems' -prune -o \
-    -wholename '/usr/lib/virtualbox/ExtensionPacks/Oracle_VM_VirtualBox_Extension_Pack' -prune -o \
     -wholename '/usr/local' -prune -o \
     -wholename '/usr/share/dict/words' -prune -o \
     -wholename '/usr/share/info/dir' -prune -o \
@@ -159,20 +181,14 @@ relaxed() {
     -wholename '/var/spool' -prune -o \
     -wholename '/var/db/sudo' -prune -o \
     -wholename '/var/tmp' -prune \) | sort -u \
-    ) | sed -e 's|^\t||;'
+    ) | $use_filter
 }
 
-case "$1" in
-  s|S|strict|Strict)
-    strict
-    ;;
-  r|R|relaxed|Relaxed)
-    relaxed
-    ;;
-  *)
-    echo "Usage $0 {strict|relaxed}"
-    ;;
-esac
-exit 0
+
+if [[ $MODE -eq 0 ]]; then
+  relaxed
+else
+  strict
+fi
 
 # vim:set ts=2 sw=2 et:
