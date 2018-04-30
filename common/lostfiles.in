@@ -1,4 +1,6 @@
 #!/bin/bash
+
+
 set -eo pipefail
 
 if [ $UID != "0" ]; then
@@ -7,6 +9,7 @@ if [ $UID != "0" ]; then
 fi
 
 usage() {
+  echo " lostfile @VERSION@"
   echo " Usage: $0 [-s] [-z] [-h]"
   echo "      Calling without an option runs in relaxed mode without sorting"
   echo "  -h  display this help"
