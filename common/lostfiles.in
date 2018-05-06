@@ -41,7 +41,7 @@ shift $((OPTIND -1))
 
 filter() {
   # just filter
-  sed -e 's|^\t||;'
+  sed -e 's|^\t||;' | sort
 }
 
 filter_sort() {
@@ -49,6 +49,7 @@ filter_sort() {
 }
 
 strict() {
+  export LC_ALL=C
   comm -13 \
     <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
     <(find / -not \( \
@@ -70,12 +71,13 @@ strict() {
     -wholename '/var/log' -prune -o \
     -wholename '/var/run' -prune -o \
     -wholename '/var/spool' -prune \) | sort -u \
-    ) | $use_filter
+    )
 }
 
 # relaxed mode is more forgiving about hits
 
 relaxed() {
+  export LC_ALL=C
   # get current kernel version for excluding current dkms module folder in /usr/lib/modules
   CURRENTKERNEL="$(uname -r)"
 
@@ -184,14 +186,14 @@ relaxed() {
     -wholename '/var/spool' -prune -o \
     -wholename '/var/db/sudo' -prune -o \
     -wholename '/var/tmp' -prune \) | sort -u \
-    ) | $use_filter
+    )
 }
 
 
 if [[ $MODE -eq 0 ]]; then
-  relaxed
+  relaxed | $use_filter
 else
-  strict
+  strict | $use_filter
 fi
 
 # vim:set ts=2 sw=2 et:
