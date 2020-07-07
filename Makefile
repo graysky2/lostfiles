@@ -1,4 +1,4 @@
-VERSION = 4.02
+VERSION = 4.04
 PN = lostfiles
 
 PREFIX ?= /usr
@@ -19,7 +19,7 @@ install-bin:
 install-man:
 	@echo -e '\033[1;32mInstalling manpage...\033[0m'
 	install -Dm644 doc/$(PN).1 "$(DESTDIR)$(MANDIR)/$(PN).1"
-	gzip -9 "$(DESTDIR)$(MANDIR)/$(PN).1"
+	gzip -n9 "$(DESTDIR)$(MANDIR)/$(PN).1"
 
 uninstall:
 	$(RM) "$(DESTDIR)$(BINDIR)/$(PN)"
