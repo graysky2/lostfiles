@@ -32,6 +32,9 @@ while getopts 'sz' OPTION; do
     s)
       MODE=1
       ;;
+    h)
+      usage
+      ;;
     *)
       usage
       ;;
