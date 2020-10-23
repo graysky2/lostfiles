@@ -68,12 +68,14 @@ relaxed() {
   comm -13 \
     <(pacman -Qlq | sed -e 's|/$||' | sort -u) \
     <(find /boot /etc /opt /usr /var -not \( \
+    -wholename '/boot/efi' -prune -o \
     -wholename '/boot/syslinux' -prune -o \
     -wholename '/boot/grub' -prune -o \
     -wholename '/boot/loader' -prune -o \
     -wholename '/boot/EFI' -prune -o \
     -wholename '/boot/initramfs*' -prune -o \
     -wholename '/boot/lost+found' -prune -o \
+    -wholename '/boot/vmlinuz*' -prune -o \
     -wholename '/etc/.etckeeper' -prune -o \
     -wholename '/etc/.git' -prune -o \
     -wholename '/etc/.pwd.lock' -prune -o \
