@@ -55,7 +55,7 @@ miniglob_list_to_regex() {
 # and adds them to the global exclude list variable
 read_config() {
   if [ -f "$1" ]; then
-    if grep -q '^[^#$+-]' "$1"; then
+    if grep -q '^[^#$ +-]' "$1"; then
       echo 'Invalid configuration file.'
       echo 'All lines in '"$1"' must start with #, + or -, $.'
       exit 1
