@@ -20,7 +20,7 @@ usage() {
 postprocess="sort"
 make_find_filter="make_relaxed_exclude_list"
 
-while getopts 'sz' OPTION; do
+while getopts 'hsz' OPTION; do
   case "$OPTION" in
     z)
       postprocess="sort_by_size"
