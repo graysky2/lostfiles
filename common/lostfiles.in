@@ -1,8 +1,13 @@
 #!/bin/bash
 set -eo pipefail
 
+echoerr() {
+  # write to stderr
+  cat <<< "$@" 1>&2;
+}
+
 if [ $UID != "0" ]; then
-  echo "You must run this script as root." 1>&2
+  echoerr "You must run this script as root."
   exit 1
 fi
 
@@ -56,8 +61,8 @@ miniglob_list_to_regex() {
 read_config() {
   if [ -f "$1" ]; then
     if grep -q '^[^#$ +-]' "$1"; then
-      echo 'Invalid configuration file.'
-      echo 'All lines in '"$1"' must start with #, + or -, $.'
+      echoerr 'Invalid configuration file.'
+      echoerr 'All lines in '"$1"' must start with #, + or -, $.'
       exit 1
     fi
 
