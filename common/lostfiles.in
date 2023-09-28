@@ -109,6 +109,6 @@ $make_find_filter
 
 LC_ALL=C comm -13 \
   <(LC_ALL=C pacman -Qlq | sed -e 's|/$||' | LC_ALL=C sort -u) \
-  <(LC_ALL=C find "${find_filter[@]}" | LC_ALL=C sort -u) | $postprocess
+  <(LC_ALL=C find "${find_filter[@]}" 2>/dev/null | LC_ALL=C sort -u) | $postprocess
 
 # vim:set ts=2 sw=2 et:
