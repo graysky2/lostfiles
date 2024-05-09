@@ -102,7 +102,7 @@ make_relaxed_exclude_list() {
 
 # Do not exclude anything in strict mode, just add the default Arch paths
 make_strict_exclude_list() {
-   find_filter=(/boot /etc /opt /srv /usr /var)
+   find_filter=(/boot /efi /etc /opt /srv /usr /var)
 }
 
 $make_find_filter
