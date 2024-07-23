@@ -22,4 +22,4 @@ tr | coreutils
 xargs | findutils
 
 ## Links
-Package: https://www.archlinux.org/packages/community/any/lostfiles/
+Package: https://archlinux.org/packages/extra/any/lostfiles/
