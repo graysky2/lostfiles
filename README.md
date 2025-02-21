@@ -2,7 +2,7 @@
 Identifies files not owned and not created by any Arch Linux package.
 
 # Installation
-This package is provided in the Arch Linux official [community](https://wiki.archlinux.org/index.php/Official_repositories#community) repository.
+This package is provided in the Arch Linux official [extra](https://wiki.archlinux.org/title/Official_repositories#extra) repository.
 
 # Usage
 Run the script as root. See the included [man](https://github.com/graysky2/lostfiles/blob/master/doc/lostfiles.1) page for options and customization. Care should be taken in deciding which files might be extraneous, particularly when running in strict mode.
