@@ -84,6 +84,13 @@ make_relaxed_exclude_list() {
   read_config "$(dirname "$0")/lostfiles.conf"
   read_config "/etc/lostfiles.conf"
 
+  # read drop-in configuration overrides from /etc/lostfiles.d/*.conf
+  if [ -d /etc/lostfiles.d ]; then
+    for f in /etc/lostfiles.d/*.conf; do
+      [ -f "$f" ] && read_config "$f"
+    done
+  fi
+
   # build include list from configuration files
   find_filter=("${find_filter[@]}" "${include_list[@]}")
 
