@@ -6,11 +6,6 @@ echoerr() {
   cat <<< "$@" 1>&2;
 }
 
-if [ $UID != "0" ]; then
-  echoerr "You must run this script as root."
-  exit 1
-fi
-
 usage() {
   echo " lostfile @VERSION@"
   echo " Usage: $0 [-s] [-z] [-h]"
@@ -42,6 +37,11 @@ while getopts 'hsz' OPTION; do
   esac
 done
 shift $((OPTIND -1))
+
+if [ $UID != "0" ]; then
+  echoerr "You must run this script as root."
+  exit 1
+fi
 
 # Sorts a list of file names by size
 sort_by_size() {
