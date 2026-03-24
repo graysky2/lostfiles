@@ -7,7 +7,7 @@ echoerr() {
 }
 
 usage() {
-  echo " lostfile @VERSION@"
+  echo " lostfiles @VERSION@"
   echo " Usage: $0 [-s] [-z] [-h]"
   echo "      Calling without an option runs in relaxed mode sorting by name"
   echo "  -h  display this help"
