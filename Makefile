@@ -1,4 +1,4 @@
-VERSION = 4.13
+VERSION = 4.15
 PN = lostfiles
 
 PREFIX ?= /usr
@@ -16,7 +16,7 @@ install-bin:
 	@echo -e '\033[1;32mInstalling main script, initd and config...\033[0m'
 	install -Dm755 common/$(PN) "$(DESTDIR)$(BINDIR)/$(PN)"
 	install -Dm644 common/$(PN).conf "$(DESTDIR)/etc/$(PN).conf"
-	install -Dm755 "$(DESTDIR)/etc/$(PN).d"
+	install -d "$(DESTDIR)/etc/$(PN).d"
 
 install-man:
 	@echo -e '\033[1;32mInstalling manpage...\033[0m'
