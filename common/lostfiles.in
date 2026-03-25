@@ -6,13 +6,8 @@ echoerr() {
   cat <<< "$@" 1>&2;
 }
 
-if [ $UID != "0" ]; then
-  echoerr "You must run this script as root."
-  exit 1
-fi
-
 usage() {
-  echo " lostfile @VERSION@"
+  echo " lostfiles @VERSION@"
   echo " Usage: $0 [-s] [-z] [-h]"
   echo "      Calling without an option runs in relaxed mode sorting by name"
   echo "  -h  display this help"
@@ -42,6 +37,11 @@ while getopts 'hsz' OPTION; do
   esac
 done
 shift $((OPTIND -1))
+
+if [ $UID != "0" ]; then
+  echoerr "You must run this script as root."
+  exit 1
+fi
 
 # Sorts a list of file names by size
 sort_by_size() {
@@ -83,6 +83,13 @@ make_relaxed_exclude_list() {
   # read configuration files
   read_config "$(dirname "$0")/lostfiles.conf"
   read_config "/etc/lostfiles.conf"
+
+  # read drop-in configuration overrides from /etc/lostfiles.d/*.conf
+  if [ -d /etc/lostfiles.d ]; then
+    for f in /etc/lostfiles.d/*.conf; do
+      [ -f "$f" ] && read_config "$f"
+    done
+  fi
 
   # build include list from configuration files
   find_filter=("${find_filter[@]}" "${include_list[@]}")
