@@ -1,4 +1,4 @@
-VERSION = 4.15
+VERSION = 4.16
 PN = lostfiles
 
 PREFIX ?= /usr
