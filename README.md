@@ -14,7 +14,8 @@ Executable | Arch package providing
 --- | ---
 bash | bash
 comm | coreutils
-find | findutils
+fd | fd
+file | file
 pacman | pacman
 sed | sed
 sort | coreutils
