@@ -60,16 +60,16 @@ miniglob_list_to_regex() {
 # and adds them to the global exclude list variable
 read_config() {
   if [ -f "$1" ]; then
-    if grep -q '^[^#$ +-]' "$1"; then
+    if grep -q '^[^#$ +-]\|^+[^/]\|^-[^/]' "$1"; then
       echoerr 'Invalid configuration file.'
-      echoerr 'All lines in '"$1"' must start with #, + or -, $.'
+      echoerr 'All lines in '"$1"' must start with #, +, - or $; + and - must be followed by absolute paths.'
       exit 1
     fi
 
-    readarray -t include_list_from_file < <(grep '^+' "$1" | cut -c 2-)
+    readarray -t include_list_from_file < <(grep '^+/' "$1" | cut -c 2-)
     include_list=("${include_list[@]}" "${include_list_from_file[@]}")
 
-    readarray -t exclude_list_from_file < <(grep '^-' "$1" | cut -c 2-)
+    readarray -t exclude_list_from_file < <(grep '^-/' "$1" | cut -c 2-)
     exclude_list=("${exclude_list[@]}" "${exclude_list_from_file[@]}")
 
     readarray -t custom_filters_list_from_file < <(grep '^\$' "$1" | cut -c 2-)
