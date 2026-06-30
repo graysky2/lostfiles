@@ -1,26 +1,17 @@
-# Lostfiles
+## Lostfiles
 Identifies files not owned and not created by any Arch Linux package.
 
-# Installation
-This package is provided in the Arch Linux official [extra](https://wiki.archlinux.org/title/Official_repositories#extra) repository.
+## Installation
+Arch Linux officially supplies [lostfiles](https://archlinux.org/packages/extra/any/lostfiles/) in the [extra](https://wiki.archlinux.org/title/Official_repositories#extra) repository.
 
-# Usage
+## Usage
 Run the script as root. See the included [man](https://github.com/graysky2/lostfiles/blob/master/doc/lostfiles.1) page for options and customization. Care should be taken in deciding which files might be extraneous, particularly when running in strict mode.
 
-# Dependencies
-This script is only for Linux distros that use pacman for package management.  All dependencies are including the Arch Linux base group but are listed out here for general info:
-
-Executable | Arch package providing
---- | ---
-bash | bash
-comm | coreutils
-fd | fd
-file | file
-pacman | pacman
-sed | sed
-sort | coreutils
-tr | coreutils
-xargs | findutils
+## Dependencies
+This script is **ONLY** for Linux distros that use `pacman` for package management. With the exception of `fd`, all dependencies are including the Arch Linux `base` group but are listed out here for general info:
+```
+bash comm fd file pacman sed sort tr xargs
+```
 
 ## Links
 Package: https://archlinux.org/packages/extra/any/lostfiles/
