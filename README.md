@@ -10,7 +10,7 @@ Run the script as root. See the included [man](https://github.com/graysky2/lostf
 ## Dependencies
 This script is **ONLY** for Linux distros that use `pacman` for package management. With the exception of `fd`, all dependencies are including the Arch Linux `base` group but are listed out here for general info:
 ```
-bash comm fd file pacman sed sort tr xargs
+bash coreutils fd file findutils sed
 ```
 
 ## Links
