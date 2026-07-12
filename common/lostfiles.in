@@ -101,9 +101,10 @@ make_relaxed_filter() {
 
   # exclude the in-use module directory for each installed kernel; these hold
   # generated files (modules.dep, dkms builds) that are not owned by a package
-  for kernel in /boot/vmlinuz-linux*; do
+  for kernel in /usr/lib/modules/*/vmlinuz; do
     [ -e "$kernel" ] || continue
-    version=$(file "$kernel" | cut -d ' ' -f 9)
+    version="${kernel%/vmlinuz}"
+    version="${version##*/}"
     [ -n "$version" ] && exclude_list+=("/usr/lib/modules/$version")
   done
 
